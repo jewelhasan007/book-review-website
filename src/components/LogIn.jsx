@@ -1,6 +1,25 @@
 import { Helmet } from "react-helmet";
+import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
+import app from "./firebase.init";
+
 
 const LogIn = () => {
+  const auth = getAuth(app);
+  console.log(app)
+  const provider = new GoogleAuthProvider();
+
+  const handleGoogleSignIn = ()=>{
+
+    signInWithPopup(auth, provider)
+    .then(result=>{
+      const user = result.user;
+      console.log(user);
+    })
+    .catch(error=>{
+      console.log('error', error.message)
+    })
+  }
+
     return (
         <div>
 <Helmet><title>Login || Book Vibe</title></Helmet>
@@ -30,7 +49,7 @@ const LogIn = () => {
           </label>
         </div>
         <div className="form-control mt-6">
-          <button className="btn btn-primary">Login</button>
+          <button className="btn btn-primary" onClick={handleGoogleSignIn}>Login</button>
         </div>
       </form>
     </div>
