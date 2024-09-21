@@ -13,6 +13,8 @@ import { Helmet, HelmetProvider } from 'react-helmet-async';
 import Root from './components/Root.jsx';
 import BookDetails from './components/BookDetails.jsx';
 import Map from './components/Map.jsx';
+import LogIn from './components/LogIn.jsx';
+import Register from './components/Register.jsx';
 
 
 
@@ -45,6 +47,14 @@ const router = createBrowserRouter([
           element:<Map></Map>,
          
         },
+        {
+          path: "/login" ,
+          element:<LogIn></LogIn>,
+       },
+        {
+          path: "/register" ,
+          element:<Register></Register>,
+       },
    ],
   },
 ]);

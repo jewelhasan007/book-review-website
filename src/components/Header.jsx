@@ -1,5 +1,6 @@
 import { NavLink } from "react-router-dom";
 import './Navlink.css'
+import { Link } from "react-router-dom";
 
 const Header = () => {
     return (
@@ -73,9 +74,9 @@ const Header = () => {
      
     </ul>
   </div>
-  <div className="navbar-end">
-    <a className="btn mx-3 font-bold text-white bg-green-500 border-green-500 hover:bg-white hover:text-green-500 hover:border-green-500">Sign In</a>
-    <a className="btn mx-4 font-bold text-white bg-blue-500 border-blue-500 hover:bg-white hover:text-blue-500 hover:border-blue-500">Sign Up</a>
+  <div className="navbar-end"> 
+  <Link to="/login"><a className="btn mx-3 font-bold text-white bg-green-500 border-green-500 hover:bg-white hover:text-green-500 hover:border-green-500">Sign In</a></Link>
+    <Link to="/register"><a className="btn mx-4 font-bold text-white bg-blue-500 border-blue-500 hover:bg-white hover:text-blue-500 hover:border-blue-500">Register</a></Link>
   </div>
 </div>
 
