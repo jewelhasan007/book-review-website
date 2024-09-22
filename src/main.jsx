@@ -9,13 +9,16 @@ import ErrorPage from './components/ErrorPage.jsx';
 import Home from './components/Home.jsx';
 import ListedBooks from './components/ListedBooks.jsx';
 import PagesToRead from './components/PagesToRead.jsx';
-import { Helmet, HelmetProvider } from 'react-helmet-async';
+import {  HelmetProvider } from 'react-helmet-async';
 import Root from './components/Root.jsx';
 import BookDetails from './components/BookDetails.jsx';
 import Map from './components/Map.jsx';
 import LogInGoogle from './components/LogInGoogle.jsx';
-import LogInGithub from './components/LogInGithub.jsx';
+
 import Register from './components/Register.jsx';
+import LogInGithub from './components/LogInGithub.jsx';
+
+
 
 
 
@@ -54,7 +57,7 @@ const router = createBrowserRouter([
        },
         {
           path: "/loginGithub" ,
-          element:<LogInGithub></LogInGithub>,
+          element: <LogInGithub></LogInGithub>
        },
         {
           path: "/register" ,
