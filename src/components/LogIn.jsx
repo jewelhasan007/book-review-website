@@ -1,37 +1,57 @@
 import { Helmet } from "react-helmet";
-import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
+import { getAuth, signInWithPopup, GoogleAuthProvider, signOut } from "firebase/auth";
 import app from "./firebase.init";
 import { useState } from "react";
 
 
 const LogIn = () => {
   const auth = getAuth(app);
-  console.log(app)
+
   const provider = new GoogleAuthProvider();
 
-  const [user, setUser] = useState([])
+  const [logedInUser, setLogedInUser] = useState([null])
   const handleGoogleSignIn = ()=>{
 
     signInWithPopup(auth, provider)
     .then(result=>{
       const user = result.user;
       console.log(user);
-      setUser(user)
+      setLogedInUser(user)
     })
     .catch(error=>{
-      console.log('error', error.message)
+      console.log('error', error.message);
+    })
+  }
+
+  const handleGoogleLoggedIn = ()=>{
+    signOut(auth)
+    .then(result =>{
+            console.log(result);
+            setLogedInUser(null)
+    })
+    .catch(error=>{
+      console.log(error)
     })
   }
 
     return (
         <div>
 <Helmet><title>Login || Book Vibe</title></Helmet>
-<h1>LogIn User Info:</h1>
-<h2>User Name:{user.displayName}</h2>
-<h3>Email: {user.email}</h3>
+
+
+
 <div className="hero bg-base-200 min-h-screen">
   <div className="hero-content flex-col lg:flex-row-reverse">
-    <div className="text-center lg:text-left">
+        <div className="text-center lg:text-left">
+        <div>
+    {
+      logedInUser && <div>
+      <h1>LogIn User Info:</h1>
+      <h2>User Name:{logedInUser.displayName}</h2>
+      <h3>Email: {logedInUser.email}</h3>
+      </div>
+    }
+    </div>
       <h1 className="text-5xl font-bold">Login now here</h1>
       <p className="py-6 text-green-400">
         If you are a user then Log in please.
@@ -54,9 +74,16 @@ const LogIn = () => {
             <a href="#" className="label-text-alt link link-hover">Forgot password?</a>
           </label>
         </div>
+        {
+          logedInUser ?
+          <div className="form-control mt-6">
+          <button className="btn btn-primary" onClick={handleGoogleLoggedIn}>LoggedOut</button>
+        </div> 
+        :
         <div className="form-control mt-6">
           <button className="btn btn-primary" onClick={handleGoogleSignIn}>Login</button>
         </div>
+        }
       </form>
     </div>
   </div>
