@@ -2,7 +2,7 @@ import { Helmet } from "react-helmet";
 import { getAuth, signInWithPopup, GoogleAuthProvider, signOut } from "firebase/auth";
 import app from "./firebase.init";
 import { useState } from "react";
-
+import { AiFillGoogleCircle } from "react-icons/ai";
 
 const LogInGoogle = () => {
   const auth = getAuth(app);
