@@ -14,6 +14,7 @@ import Root from './components/Root.jsx';
 import BookDetails from './components/BookDetails.jsx';
 import Map from './components/Map.jsx';
 import LogInGoogle from './components/LogInGoogle.jsx';
+import LogInGithub from './components/LogInGithub.jsx';
 import Register from './components/Register.jsx';
 
 
@@ -49,11 +50,11 @@ const router = createBrowserRouter([
         },
         {
           path: "/loginGoogle" ,
-          element:<LogIn></LogIn>,
+          element:<LogInGoogle></LogInGoogle>,
        },
         {
           path: "/loginGithub" ,
-          element:<LogInGoogle></LogInGoogle>,
+          element:<LogInGithub></LogInGithub>,
        },
         {
           path: "/register" ,
