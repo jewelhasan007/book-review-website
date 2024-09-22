@@ -74,7 +74,7 @@ const LogIn = () => {
             <a href="#" className="label-text-alt link link-hover">Forgot password?</a>
           </label>
         </div>
-        {
+        { logedInUser && 
           logedInUser ?
           <div className="form-control mt-6">
           <button className="btn btn-primary" onClick={handleGoogleLoggedIn}>LoggedOut</button>
@@ -110,3 +110,4 @@ export default LogIn;
 // import googleAuthProvider and create a new provider.
 // 12. use signInWithPopUp and pass auth and provider.
 // 13. Activate sign-in method(for google, github etc) from console.firebase.google.com
+//  14. [vite]: change 127.0.0.1 to localhost.
