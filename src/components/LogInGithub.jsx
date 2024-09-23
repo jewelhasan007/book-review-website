@@ -1,16 +1,20 @@
 import { Helmet } from "react-helmet";
 import { getAuth, GithubAuthProvider, signInWithPopup } from "firebase/auth";
 import app from "./firebase.init";
+import { useState } from "react";
 
 const LogInGithub = () => {
- 
+ const [logInGit, setLogInGit] = useState([null]) ;
+
 const auth = getAuth(app);
+console.log(app)
 const provider = new GithubAuthProvider();
 const handleLogIn = () =>{
   signInWithPopup(auth, provider)
   .then(result=>{
     const user = result.user;
     console.log(user);
+    setLogInGit(user)
   })
   .catch(error => {console.log(error.message);})
 }
@@ -20,8 +24,8 @@ const handleLogIn = () =>{
     <Helmet><title>Login Github || Book Vibe</title></Helmet>
     
     <div>
-      <h1>Git: </h1>
-      <h1>Github Email: </h1>
+      <h1>Git:</h1>
+      <h1>Github Email: {logInGit.email} </h1>
     </div>
     
     <div className="hero bg-base-200 min-h-screen">
