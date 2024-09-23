@@ -1,11 +1,28 @@
 import { Helmet } from "react-helmet";
+import { getAuth, GithubAuthProvider, signInWithPopup } from "firebase/auth";
+import app from "./firebase.init";
 
 const LogInGithub = () => {
+ 
+const auth = getAuth(app);
+const provider = new GithubAuthProvider();
+const handleLogIn = () =>{
+  signInWithPopup(auth, provider)
+  .then(result=>{
+    const user = result.user;
+    console.log(user);
+  })
+  .catch(error => {console.log(error.message);})
+}
+
   return (
     <div>
     <Helmet><title>Login Github || Book Vibe</title></Helmet>
     
-    
+    <div>
+      <h1>Git: </h1>
+      <h1>Github Email: </h1>
+    </div>
     
     <div className="hero bg-base-200 min-h-screen">
       <div className="hero-content flex-col lg:flex-row-reverse">
@@ -35,6 +52,11 @@ const LogInGithub = () => {
                 <a href="#" className="label-text-alt link link-hover">Forgot password?</a>
               </label>
             </div>
+            <div>
+            <div className="form-control mt-6">
+          <button className="btn btn-primary" onClick={handleLogIn}>Login</button>
+        </div>
+            </div>
           
           </form>
         </div>
@@ -46,7 +68,6 @@ const LogInGithub = () => {
 };
 
 export default LogInGithub;
-
 
 
 //STEP TO SETTING FIREBASE (WEB SETTING)

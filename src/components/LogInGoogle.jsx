@@ -5,13 +5,13 @@ import { useState } from "react";
 import { AiFillGoogleCircle } from "react-icons/ai";
 
 const LogInGoogle = () => {
-  const auth = getAuth(app);
-
-  const provider = new GoogleAuthProvider();
 
   const [logedInUser, setLogedInUser] = useState([null])
-  const handleGoogleSignIn = ()=>{
 
+  const auth = getAuth(app);
+  const provider = new GoogleAuthProvider();
+ 
+  const handleGoogleSignIn = ()=>{
     signInWithPopup(auth, provider)
     .then(result=>{
       const user = result.user;
