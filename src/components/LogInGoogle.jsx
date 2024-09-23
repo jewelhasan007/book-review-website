@@ -6,7 +6,7 @@ import { AiFillGoogleCircle } from "react-icons/ai";
 
 const LogInGoogle = () => {
 
-  const [logedInUser, setLogedInUser] = useState([null])
+  const [logedInUser, setLogedInUser] = useState([null]);
 
   const auth = getAuth(app);
   const provider = new GoogleAuthProvider();

@@ -15,8 +15,9 @@ const handleLogIn = () =>{
     const user = result.user;
     console.log(user);
     setLogInGit(user)
+    console.log(logInGit)
   })
-  .catch(error => {console.log(error.message);})
+  .catch(error => {console.log('error', error.message);})
 }
 
   return (
