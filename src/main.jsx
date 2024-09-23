@@ -14,13 +14,8 @@ import Root from './components/Root.jsx';
 import BookDetails from './components/BookDetails.jsx';
 import Map from './components/Map.jsx';
 import LogInGoogle from './components/LogInGoogle.jsx';
-
 import Register from './components/Register.jsx';
 import LogInGithub from './components/LogInGithub.jsx';
-
-
-
-
 
 const router = createBrowserRouter([
   {

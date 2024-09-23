@@ -1,4 +1,3 @@
-
 const getStoredBookForRead = () =>{
     const storedBookForRead =localStorage.getItem('Read-book');
     if(storedBookForRead){
@@ -6,7 +5,6 @@ const getStoredBookForRead = () =>{
     }
     return [];
 }
-
 const saveForRead = bookId =>{
     const storedBookForReads = getStoredBookForRead();
     const exist = storedBookForReads.find(book => book === bookId);

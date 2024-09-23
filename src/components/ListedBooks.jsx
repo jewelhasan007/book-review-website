@@ -64,6 +64,7 @@ const ListedBooks = () => {
     if (books.length > 0){
       const wishBookList = books.filter(book => wishList.includes(book.bookId));
       setWishedBooks(wishBookList);
+      setDisplayWishedBooks(wishBookList)
     }
   },[])
 
