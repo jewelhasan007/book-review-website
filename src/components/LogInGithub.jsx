@@ -4,30 +4,35 @@ import app from "./firebase.init";
 import { useState } from "react";
 
 const LogInGithub = () => {
- const [logInGit, setLogInGit] = useState([null]) ;
-
 const auth = getAuth(app);
-console.log(app)
+
 const provider = new GithubAuthProvider();
+
+const [logInGit, setLogInGit] = useState(null)
 const handleLogIn = () =>{
+
   signInWithPopup(auth, provider)
   .then(result=>{
-    const user = result.user;
-    console.log(user);
-    setLogInGit(user)
-    console.log(logInGit)
+    const gitUser = result.user;
+    console.log(gitUser)
+    setLogInGit(gitUser)
+    
   })
-  .catch(error => {console.log('error', error.message);})
+  .catch(error => {
+    console.log('error', error.message);
+  })
 }
 
   return (
     <div>
     <Helmet><title>Login Github || Book Vibe</title></Helmet>
-    
-    <div>
-      <h1>Git:</h1>
+    {
+      logInGit &&  <div>
+      <h1>Git:{logInGit.displayName}</h1>
       <h1>Github Email: {logInGit.email} </h1>
     </div>
+    }
+   
     
     <div className="hero bg-base-200 min-h-screen">
       <div className="hero-content flex-col lg:flex-row-reverse">
