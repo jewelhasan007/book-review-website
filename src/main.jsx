@@ -17,6 +17,8 @@ import LogInGoogle from './components/LogInGoogle.jsx';
 import Register from './components/Register.jsx';
 import LogInGithub from './components/LogInGithub.jsx';
 
+
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -47,8 +49,11 @@ const router = createBrowserRouter([
          
         },
         {
+
           path: "/loginGoogle" ,
+  
           element:<LogInGoogle></LogInGoogle>,
+
        },
         {
           path: "/loginGithub" ,
@@ -65,7 +70,11 @@ const router = createBrowserRouter([
 createRoot(document.getElementById('root')).render(
   <StrictMode>
 <HelmetProvider>
+
+
  <RouterProvider router={router} />
+
+
  </HelmetProvider>
   </StrictMode>,
 )

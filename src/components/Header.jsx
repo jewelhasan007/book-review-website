@@ -4,7 +4,9 @@ import { Link } from "react-router-dom";
 import { AiFillGoogleCircle } from "react-icons/ai";
 import { FaGithub } from "react-icons/fa";
 
+
 const Header = () => {
+  
     return (
         <div>
             <div className="navbar bg-base-100">
@@ -77,7 +79,7 @@ const Header = () => {
     </ul>
   </div>
   <div className="navbar-end"> 
- 
+
     <Link to="/loginGoogle"><a className="btn mx-3  text-white bg-green-500 border-green-500 hover:bg-white hover:text-green-500 hover:border-green-500">  Sign In <AiFillGoogleCircle className="text-2xl"/> </a></Link>
  
   <Link to="/loginGithub"><a className="btn mx-3 text-white bg-green-500 border-green-500 hover:bg-white hover:text-green-500 hover:border-green-500"> Github <FaGithub className="text-2xl" /></a></Link>
