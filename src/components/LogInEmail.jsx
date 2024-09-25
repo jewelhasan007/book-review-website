@@ -4,6 +4,7 @@ import { Helmet } from 'react-helmet';
 
 
 const LogInEmail = () => {
+
     const handleEmailLogIn = e =>{
         e.preventDefault();
         const email = e.target.email.value;
@@ -11,6 +12,7 @@ const LogInEmail = () => {
         console.log(email, password);
         // console.log('clicked')
     }
+    
     return (
         <div>
         <Helmet><title>LogInEmail || Book Vibe</title></Helmet>
