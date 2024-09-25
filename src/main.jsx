@@ -16,6 +16,7 @@ import Map from './components/Map.jsx';
 import LogInGoogle from './components/LogInGoogle.jsx';
 import Register from './components/Register.jsx';
 import LogInGithub from './components/LogInGithub.jsx';
+import LogInEmail from './components/LogInEmail.jsx';
 
 
 
@@ -48,6 +49,20 @@ const router = createBrowserRouter([
           element:<Map></Map>,
          
         },
+        {
+
+          path: "/loginEmail" ,
+  
+          element:<LogInEmail></LogInEmail>,
+
+       },
+        {
+
+          path: "/loginGoogle" ,
+  
+          element:<LogInGoogle></LogInGoogle>,
+
+       },
         {
 
           path: "/loginGoogle" ,

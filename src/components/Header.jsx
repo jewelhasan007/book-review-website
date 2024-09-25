@@ -80,10 +80,10 @@ const Header = () => {
   </div>
   <div className="navbar-end"> 
 
-    <Link to="/loginGoogle"><a className="btn mx-3  text-white bg-green-500 border-green-500 hover:bg-white hover:text-green-500 hover:border-green-500">  Sign In <AiFillGoogleCircle className="text-2xl"/> </a></Link>
- 
-  <Link to="/loginGithub"><a className="btn mx-3 text-white bg-green-500 border-green-500 hover:bg-white hover:text-green-500 hover:border-green-500"> Github <FaGithub className="text-2xl" /></a></Link>
-    <Link to="/register"><a className="btn mx-4 font-bold text-white bg-blue-500 border-blue-500 hover:bg-white hover:text-blue-500 hover:border-blue-500">Register</a></Link>
+    <Link to="/loginEmail"><a className="btn mx-3 text-[12px]   text-white bg-green-500 border-green-500 hover:bg-white hover:text-green-500 hover:border-green-500">  Log In Email </a></Link>
+    <Link to="/loginGoogle"><a className="btn mx-3 text-[12px]  text-white bg-green-500 border-green-500 hover:bg-white hover:text-green-500 hover:border-green-500">  Sign In <AiFillGoogleCircle className="text-2xl"/> </a></Link>
+    <Link to="/loginGithub"><a className="btn mx-3 text-[12px]  text-white bg-green-500 border-green-500 hover:bg-white hover:text-green-500 hover:border-green-500"> Github <FaGithub className="text-2xl" /></a></Link>
+    <Link to="/register"><a className="btn mx-4 text-[12px]  text-white bg-blue-500 border-blue-500 hover:bg-white hover:text-blue-500 hover:border-blue-500">Register</a></Link>
   </div>
 </div>
 
