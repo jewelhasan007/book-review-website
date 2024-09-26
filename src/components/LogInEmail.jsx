@@ -20,6 +20,9 @@ const [passwordError, setPasswordError] = useState('');
           setPasswordError('the password is less than 4 characters');
           return
         }
+        else if(!/A-Z/.test(password)){
+          setPasswordError('UPPERCASE MISSING')
+        }
 const auth = getAuth(app)    
 createUserWithEmailAndPassword(auth, email, password)
 .then(result=>{
