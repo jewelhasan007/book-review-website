@@ -39,7 +39,7 @@ const [showPass, setShowPass] = useState(true);
           setPasswordError('number Missing')
           return
         }
-        else if(!/[!#$%&? "]/.test(password)){
+        else if(!/[!#$%&?@ "]/.test(password)){
           setPasswordError('special character is missing')
           return
         }

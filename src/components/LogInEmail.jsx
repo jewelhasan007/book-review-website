@@ -3,62 +3,28 @@ import { Helmet } from 'react-helmet';
 import { FaEye, FaEyeSlash  } from "react-icons/fa";
 
 import app from './firebase.init';
-import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
+import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 
 const LogInEmail = () => {
-
-const [emailUser, setEmailUser] = useState('');
-const [userSubmit, setUserSubmit] = useState('');
-const [passwordError, setPasswordError] = useState('');
-const [showPass, setShowPass] = useState(true);
-
-
+  const [showPass, setShowPass] = useState(true);
+  const[emailError, setEmailError] = useState('');
+  const[passError, setPassError] = useState('');
+  
     const handleEmailLogIn = e =>{
-        e.preventDefault();
-       
+        e.preventDefault();       
         const email = e.target.email.value;
         const password = e.target.password.value;
-        const terms = e.target.terms.checked;
-        console.log(name, email, password);
-        // console.log('clicked')
+        console.log(email, password)
   
-        if(password.length < 4 ) {
-          setPasswordError('the password is less than 4 characters');
-          return
-      
-        }
-        else if(!/[A-Z]/.test(password)){
-          setPasswordError('UPPERCASE Missing')
-          return
-        }
-        else if(!/[a-z]/.test(password)){
-          setPasswordError('lowercase Missing')
-          return
-        }
-        else if(!/[0-9]/.test(password)){
-          setPasswordError('number Missing')
-          return
-        }
-        else if(!/[!#$%&? "]/.test(password)){
-          setPasswordError('special character is missing')
-          return
-        }
-        setPasswordError('');
-        setUserSubmit('');
-const auth = getAuth(app)    
-createUserWithEmailAndPassword(auth, email, password)
-.then(result=>{
-  const logInUser = result.user;
-  console.log(logInUser);
-  setEmailUser(logInUser);
-  setUserSubmit(logInUser);
- 
-})
-.catch(error =>{
-  console.log(error)
-  setPasswordError(error.message)
-  console.log(passwordError)
-})
+  const auth = getAuth(app)    
+  signInWithEmailAndPassword(auth, email, password)
+  .then(result=>{
+    console.log(result.user);
+  })
+  .catch(error =>{
+  console.error(error)
+  setPassError(error.message)
+ })
 
     }
 // Show Password in Password input 
@@ -102,14 +68,10 @@ createUserWithEmailAndPassword(auth, email, password)
                 </div>
               
                 <button className="btn btn-primary" >Log In</button>
-                <div className='mt-3'>
-                {
-                  userSubmit && userSubmit ? <span className='text-green-500 font-bold'>Successfully Submitted</span> : ''
-                }
+                <div className='text-red-500'>
+                  {passError}
                 </div>
-                <div className= { passwordError && passwordError ? 'text-red-500 font-bold' : ''}>
-                  { passwordError }
-                 </div>
+              
               </form>
              
             </div>
