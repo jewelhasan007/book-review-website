@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { Helmet } from 'react-helmet';
+import { FaEye, FaEyeSlash  } from "react-icons/fa";
+
 import app from './firebase.init';
 import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
 
@@ -8,6 +10,8 @@ const LogInEmail = () => {
 const [emailUser, setEmailUser] = useState('');
 const [userSubmit, setUserSubmit] = useState('');
 const [passwordError, setPasswordError] = useState('');
+const [showPass, setShowPass] = useState(true);
+
 
     const handleEmailLogIn = e =>{
         e.preventDefault();
@@ -56,6 +60,11 @@ createUserWithEmailAndPassword(auth, email, password)
 
     }
 
+    const handleShowPass = ()=>{
+      setShowPass(!showPass)
+  
+    }
+
     return (
         <div>
         <Helmet><title>LogInEmail || Book Vibe</title></Helmet>
@@ -98,8 +107,14 @@ createUserWithEmailAndPassword(auth, email, password)
                   <label className="label">
                     <span className="label-text">Password</span>
                   </label>
-                  <input name='password' type="password" placeholder="password" className="input input-bordered" required />
+                  <div className='flex'>
+                  <input name='password' type={showPass ? "password" : "text"} placeholder="password" className="input input-bordered" required />
+                  <FaEye className={showPass ? 'mx-3 my-4':'hidden'} onClick={handleShowPass}/>
+                  <FaEyeSlash className={showPass ? 'hidden':'mx-3 my-4'} onClick={handleShowPass}/>
+                  </div>
+                 
                   <label className="label">
+                 
                     <a href="#" className="label-text-alt link link-hover">Forgot password?</a>
                   </label>
                 </div>
