@@ -15,7 +15,7 @@ const [showPass, setShowPass] = useState(true);
 
     const handleEmailLogIn = e =>{
         e.preventDefault();
-        const name = e.target.name.value;
+       
         const email = e.target.email.value;
         const password = e.target.password.value;
         const terms = e.target.terms.checked;
@@ -70,34 +70,15 @@ createUserWithEmailAndPassword(auth, email, password)
         <div>
         <Helmet><title>LogInEmail || Book Vibe</title></Helmet>
     
-        <div className={passwordError && passwordError ? 'text-center hidden' : 'text-center' }>
-        <div className={userSubmit && !passwordError  ? 'text-green-500' : '' }>
-           User: {emailUser.displayName}
-         </div>
-         {
-   
-         }
-         <div className={userSubmit && !passwordError ? 'text-green-500' : '' }>
-         Email: {emailUser.email}
-         </div>
-         </div>
-  
-
-        <div className="hero bg-base-200 min-h-screen">
+        <div className="hero bg-green-100 min-h-screen">
           <div className="hero-content flex-col">
                 <div className="text-center ">
-                <h1 className="text-5xl font-bold">Email Log In</h1>
-            
+
                 </div>
 
                 <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
               <form className="card-body" onSubmit={handleEmailLogIn}>
-                <div className="form-control">
-                  <label className="label">
-                    <span className="label-text">Name</span>
-                  </label>
-                  <input name='name' type="name" placeholder="name" className="input input-bordered" required />
-                </div>
+               
                 <div className="form-control">
                   <label className="label">
                     <span className="label-text">Email</span>
@@ -119,13 +100,8 @@ createUserWithEmailAndPassword(auth, email, password)
                     <a href="#" className="label-text-alt link link-hover">Forgot password?</a>
                   </label>
                 </div>
-                <div className="form-control flex flex-row">
-                
-                  <input className='mr-2' type="checkbox" name="terms" id="terms" required/>
-                  <label htmlFor="terms">I accept the <a href="" className='font-bold'>Terms & Conditions</a></label>
-                
-                </div>
-                <button className="btn btn-primary" >Submit</button>
+              
+                <button className="btn btn-primary" >Log In</button>
                 <div className='mt-3'>
                 {
                   userSubmit && userSubmit ? <span className='text-green-500 font-bold'>Successfully Submitted</span> : ''
