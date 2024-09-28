@@ -18,6 +18,7 @@ const [showPass, setShowPass] = useState(true);
         const name = e.target.name.value;
         const email = e.target.email.value;
         const password = e.target.password.value;
+        const terms = e.target.terms.checked;
         console.log(name, email, password);
         // console.log('clicked')
   
@@ -48,9 +49,10 @@ const auth = getAuth(app)
 createUserWithEmailAndPassword(auth, email, password)
 .then(result=>{
   const logInUser = result.user;
+  console.log(logInUser);
   setEmailUser(logInUser);
   setUserSubmit(logInUser);
-  console.log(emailUser);
+ 
 })
 .catch(error =>{
   console.log(error)
@@ -59,11 +61,10 @@ createUserWithEmailAndPassword(auth, email, password)
 })
 
     }
-
+// Show Password in Password input 
     const handleShowPass = ()=>{
       setShowPass(!showPass)
-  
-    }
+      }
 
     return (
         <div>
@@ -120,7 +121,7 @@ createUserWithEmailAndPassword(auth, email, password)
                 </div>
                 <div className="form-control flex flex-row">
                 
-                  <input className='mr-2' type="checkbox" name="terms" id="terms" />
+                  <input className='mr-2' type="checkbox" name="terms" id="terms" required/>
                   <label htmlFor="terms">I accept the <a href="" className='font-bold'>Terms & Conditions</a></label>
                 
                 </div>
