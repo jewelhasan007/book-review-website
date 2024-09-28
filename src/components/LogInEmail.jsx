@@ -11,9 +11,10 @@ const [passwordError, setPasswordError] = useState('');
 
     const handleEmailLogIn = e =>{
         e.preventDefault();
+        const name = e.target.name.value;
         const email = e.target.email.value;
         const password = e.target.password.value;
-        console.log(email, password);
+        console.log(name, email, password);
         // console.log('clicked')
   
         if(password.length < 4 ) {
@@ -85,7 +86,7 @@ createUserWithEmailAndPassword(auth, email, password)
                   <label className="label">
                     <span className="label-text">Name</span>
                   </label>
-                  <input name='text' type="name" placeholder="name" className="input input-bordered" required />
+                  <input name='name' type="name" placeholder="name" className="input input-bordered" required />
                 </div>
                 <div className="form-control">
                   <label className="label">
