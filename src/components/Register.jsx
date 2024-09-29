@@ -78,18 +78,6 @@ createUserWithEmailAndPassword(auth, email, password)
         <div>
         <Helmet><title>LogInEmail || Book Vibe</title></Helmet>
     
-        <div className={passwordError && passwordError ? 'text-center hidden' : 'text-center' }>
-        <div className={userSubmit && !passwordError  ? 'text-green-500' : '' }>
-           User: {emailUser.displayName}
-           console.log(emailUser)
-         </div>
-         {
-   
-         }
-         <div className={userSubmit && !passwordError ? 'text-green-500' : '' }>
-         Email: {emailUser.email}
-         </div>
-         </div>
   
 
         <div className="hero bg-base-200 min-h-screen">

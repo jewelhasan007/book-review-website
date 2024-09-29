@@ -38,8 +38,11 @@ const LogInEmail = () => {
         <div>
         <Helmet><title>LogInEmail || Book Vibe</title></Helmet>
     <div>
-      {  user.displayName}
-      { user.email}
+  <div className=' mx-3 text-center'>
+  Profile Name: {  user.displayName}
+ <br />
+     Email ID: { user.email}
+     </div>
     </div>
         <div className="hero bg-green-100 min-h-screen">
           <div className="hero-content flex-col">
