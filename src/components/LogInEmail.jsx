@@ -6,6 +6,7 @@ import app from './firebase.init';
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 
 const LogInEmail = () => {
+  const [user, setUser] = useState([]);
   const [showPass, setShowPass] = useState(true);
   const[emailError, setEmailError] = useState('');
   const[passError, setPassError] = useState('');
@@ -19,14 +20,15 @@ const LogInEmail = () => {
   const auth = getAuth(app)    
   signInWithEmailAndPassword(auth, email, password)
   .then(result=>{
-    console.log(result.user);
+    const id = result.user;
+    setUser(id);
+
   })
   .catch(error =>{
   console.error(error)
   setPassError(error.message)
  })
-
-    }
+  }
 // Show Password in Password input 
     const handleShowPass = ()=>{
       setShowPass(!showPass)
@@ -35,7 +37,10 @@ const LogInEmail = () => {
     return (
         <div>
         <Helmet><title>LogInEmail || Book Vibe</title></Helmet>
-    
+    <div>
+      {  user.displayName}
+      { user.email}
+    </div>
         <div className="hero bg-green-100 min-h-screen">
           <div className="hero-content flex-col">
                 <div className="text-center ">

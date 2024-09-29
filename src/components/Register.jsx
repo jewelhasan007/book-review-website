@@ -3,7 +3,7 @@ import { Helmet } from 'react-helmet';
 import { FaEye, FaEyeSlash  } from "react-icons/fa";
 
 import app from './firebase.init';
-import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
+import { getAuth, createUserWithEmailAndPassword, sendEmailVerification, updateProfile } from 'firebase/auth';
 
 const Register = () => {
 
@@ -11,7 +11,6 @@ const [emailUser, setEmailUser] = useState('');
 const [userSubmit, setUserSubmit] = useState('');
 const [passwordError, setPasswordError] = useState('');
 const [showPass, setShowPass] = useState(true);
-
 
     const handleEmailLogIn = e =>{
         e.preventDefault();
@@ -25,7 +24,6 @@ const [showPass, setShowPass] = useState(true);
         if(password.length < 4 ) {
           setPasswordError('the password is less than 4 characters');
           return
-      
         }
         else if(!/[A-Z]/.test(password)){
           setPasswordError('UPPERCASE Missing')
@@ -50,22 +48,32 @@ createUserWithEmailAndPassword(auth, email, password)
 .then(result=>{
   const logInUser = result.user;
   console.log(logInUser);
-  setEmailUser(logInUser);
-  setUserSubmit(logInUser);
- 
+
+  updateProfile(logInUser, {
+    displayName: name
+
+    })
+ setEmailUser(logInUser);
+ setUserSubmit(logInUser);
 })
+
+ sendEmailVerification(logInUser)
+ .then(()=> {
+  alert('Please check your email and verify your account')
+ })
+ 
 .catch(error =>{
   console.log(error)
   setPasswordError(error.message)
   console.log(passwordError)
 })
 
+
     }
 // Show Password in Password input 
     const handleShowPass = ()=>{
       setShowPass(!showPass)
       }
-
     return (
         <div>
         <Helmet><title>LogInEmail || Book Vibe</title></Helmet>
@@ -73,6 +81,7 @@ createUserWithEmailAndPassword(auth, email, password)
         <div className={passwordError && passwordError ? 'text-center hidden' : 'text-center' }>
         <div className={userSubmit && !passwordError  ? 'text-green-500' : '' }>
            User: {emailUser.displayName}
+           console.log(emailUser)
          </div>
          {
    
