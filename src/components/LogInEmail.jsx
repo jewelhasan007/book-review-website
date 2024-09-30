@@ -1,23 +1,54 @@
 import React, { useState } from 'react';
 import { Helmet } from 'react-helmet';
 import { FaEye, FaEyeSlash  } from "react-icons/fa";
-
+import LogInGoogle from './LogInGoogle'
+import LogInGithub from './LogInGithub'
 import app from './firebase.init';
-import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
+import { getAuth, signInWithEmailAndPassword, GoogleAuthProvider,signInWithPopup, signOut } from 'firebase/auth';
 
 const LogInEmail = () => {
   const [user, setUser] = useState([]);
   const [showPass, setShowPass] = useState(true);
   const[emailError, setEmailError] = useState('');
   const[passError, setPassError] = useState('');
-  
+  const [logedInUser, setLogedInUser] = useState([null]);
+
+  const auth = getAuth(app)    
+
+//LogInGoogle
+
+  const provider = new GoogleAuthProvider();
+  const handleGoogleSignIn = ()=>{
+    signInWithPopup(auth, provider)
+    .then(resultGoogle=>{
+      const userGoogle = resultGoogle.user;
+      console.log(userGoogle);
+      setLogedInUser(userGoogle)
+    })
+    .catch(error=>{
+      console.log('error', error.message);
+    })
+  }
+
+  const handleGoogleLoggedIn = ()=>{
+    signOut(auth)
+    .then(result =>{
+            console.log(result);
+            setLogedInUser(null)
+    })
+    .catch(error=>{
+      console.log(error)
+    })
+  }
+
+  //Email LogIn
+
     const handleEmailLogIn = e =>{
         e.preventDefault();       
         const email = e.target.email.value;
         const password = e.target.password.value;
         console.log(email, password)
   
-  const auth = getAuth(app)    
   signInWithEmailAndPassword(auth, email, password)
   .then(result=>{
     const id = result.user;
@@ -29,6 +60,7 @@ const LogInEmail = () => {
   setPassError(error.message)
  })
   }
+
 // Show Password in Password input 
     const handleShowPass = ()=>{
       setShowPass(!showPass)
@@ -57,14 +89,14 @@ const LogInEmail = () => {
                   <label className="label">
                     <span className="label-text">Email</span>
                   </label>
-                  <input name='email' type="email" placeholder="email" className="input input-bordered" required />
+                  <input name='email' type="email" placeholder="email" className="input input-bordered"  />
                 </div>
                 <div className="form-control">
                   <label className="label">
                     <span className="label-text">Password</span>
                   </label>
                   <div className='flex'>
-                  <input name='password' type={showPass ? "password" : "text"} placeholder="password" className="input input-bordered" required />
+                  <input name='password' type={showPass ? "password" : "text"} placeholder="password" className="input input-bordered"  />
                   <FaEye className={showPass ? 'mx-3 my-4':'hidden'} onClick={handleShowPass}/>
                   <FaEyeSlash className={showPass ? 'hidden':'mx-3 my-4'} onClick={handleShowPass}/>
                   </div>
@@ -76,12 +108,26 @@ const LogInEmail = () => {
                 </div>
               
                 <button className="btn btn-primary" >Log In</button>
+                
                 <div className='text-red-500'>
                   {passError}
                 </div>
               
               </form>
-             
+
+              <div>
+               {/* Google Login Button */}
+                { !logedInUser && 
+                  logedInUser ?
+                  <div className="form-control mt-6">
+                  <button className="btn btn-primary" onClick={handleGoogleLoggedIn}>LoggedOut</button>
+                  </div> 
+                  :
+                  <div className="form-control mt-6">
+                  <button className="btn btn-primary" onClick={handleGoogleSignIn}>Login</button>
+                  </div>
+                }
+                </div>
             </div>
           </div>
         </div>
